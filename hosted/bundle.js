@@ -35,6 +35,12 @@ var DomoForm = function DomoForm(props) {
         React.createElement("input", { id: "domoName", type: "text", name: "name", placeholder: "Domo Name" }),
         React.createElement(
             "label",
+            { htmlFor: "height" },
+            "Height: "
+        ),
+        React.createElement("input", { id: "domoHeight", type: "text", name: "height", placeholder: "Domo Height" }),
+        React.createElement(
+            "label",
             { htmlFor: "age" },
             "Age: "
         ),
@@ -67,6 +73,13 @@ var DomoList = function DomoList(props) {
                 { className: "domoName" },
                 " Name: ",
                 domo.name,
+                " "
+            ),
+            React.createElement(
+                "h3",
+                { className: "domoHeight" },
+                " Height: ",
+                domo.height,
                 " "
             ),
             React.createElement(
