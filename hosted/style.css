@@ -71,21 +71,28 @@ nav:nth-child(1) {
     float:left;
 }
 
-.makeDomoSubmit {
+.makeDomoSubmit, .deleteDomo {
     transition: background-color 0.4s ease;
     display: inline;
-    width: 90px;
+    width: 100px;
     background-color: #55acee;
     border-radius: 2px;
     color: white;
     text-decoration: none;
 }
 
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+.makeDomoSubmit:link, 
+.makeDomoSubmit:visited, 
+.makeDomoSubmit:hover, 
+.makeDomoSubmit:active, 
+.deleteDomo:link, 
+.deleteDomo:visited, 
+.deleteDomo:hover, 
+.deleteDomo:active, {
     color: white;
 }
 
-.makeDomoSubmit:hover {
+.makeDomoSubmit:hover, .deleteDomo:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
 }

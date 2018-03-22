@@ -5,12 +5,27 @@ var handleDomo = function handleDomo(e) {
 
     $("#domoMessage").animate({ width: 'hide' }, 350);
 
-    if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
+    if ($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoHeight").val() == '') {
         handleError("RAWR! All fields are required");
         return false;
     }
 
     sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function () {
+        loadDomosFromServer();
+    });
+
+    return false;
+};
+
+var deleteDomo = function deleteDomo(e, domoID) {
+    $("#domoMessage").animate({ width: 'hide' }, 350);
+
+    if ($("#domoID").val() == '') {
+        handleError("RAWR! Domo does not exist");
+        return false;
+    }
+
+    sendAjax('POST', "/deleteDomo", $("#clientCSRF").serialize() + "&domoID=" + domoID, function () {
         loadDomosFromServer();
     });
 
@@ -45,7 +60,7 @@ var DomoForm = function DomoForm(props) {
             "Age: "
         ),
         React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Domo Age" }),
-        React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+        React.createElement("input", { id: "clientCSRF", type: "hidden", name: "_csrf", value: props.csrf }),
         React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Make Domo" })
     );
 };
@@ -88,6 +103,13 @@ var DomoList = function DomoList(props) {
                 " Age: ",
                 domo.age,
                 " "
+            ),
+            React.createElement(
+                "button",
+                { className: "deleteDomo", onClick: function onClick(e) {
+                        return deleteDomo(e, domo._id);
+                    } },
+                "Delete Domo"
             )
         );
     });
